@@ -1,17 +1,18 @@
 package helper;
 import constants.ApiMethods;
-import constants.BaseUrl;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;
 import io.restassured.specification.RequestSpecification;
+import utils.LoadPropertiesFile;
+
 import java.util.Map;
 
 public class PetServiceHelper {
     private String method;
-    private String BASE_URL = BaseUrl.STAGING;
+    private String BASE_URL = LoadPropertiesFile.loadBaseUrl();
     private String fullURL;
 
     private RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
@@ -33,7 +34,7 @@ public class PetServiceHelper {
         RequestSpecification request = RestAssured.given();
         request.contentType(ContentType.JSON);
         request.spec(requestSpecification);
-        
+
         return switch (this.method) {
             case ApiMethods.POST -> request.post(this.fullURL);
             case ApiMethods.GET -> request.get(this.fullURL);
