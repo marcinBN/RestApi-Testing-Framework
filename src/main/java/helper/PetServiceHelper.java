@@ -28,7 +28,7 @@ public class PetServiceHelper {
         return fullURL;
     }
 
-    private ResponseOptions<Response> ExecuteAPI() {
+    private ResponseOptions<Response> executeAPI() {
         RequestSpecification requestSpecification = requestSpecBuilder.build();
         RequestSpecification request = RestAssured.given();
         request.contentType(ContentType.JSON);
@@ -46,31 +46,31 @@ public class PetServiceHelper {
 
     }
 
-    public String Authenticate(Object body) {
+    public String authenticate(Object body) {
         requestSpecBuilder.setBody(body);
-        return ExecuteAPI().getBody().jsonPath().get("access_token");
+        return executeAPI().getBody().jsonPath().get("access_token");
     }
 
     public ResponseOptions<Response> executeWithQueryParams(Map<String, String> queryParams) {
         requestSpecBuilder.addQueryParams(queryParams);
-        return ExecuteAPI();
+        return executeAPI();
 
     }
 
     public ResponseOptions<Response> executeWithPathParams(Map<String, String> pathParams) {
         requestSpecBuilder.addPathParams(pathParams);
-        return ExecuteAPI();
+        return executeAPI();
     }
 
     public ResponseOptions<Response> executeWithBodyParams(Object body) {
         requestSpecBuilder.setBody(body);
-        return ExecuteAPI();
+        return executeAPI();
     }
 
-    public ResponseOptions<Response> ExecuteWithPathParamsAndBody(Map<String, String> pathParams, Map<String, String> body) {
+    public ResponseOptions<Response> executeWithPathParamsAndBody(Map<String, String> pathParams, Map<String, String> body) {
         requestSpecBuilder.setBody(body);
         requestSpecBuilder.addPathParams(pathParams);
-        return ExecuteAPI();
+        return executeAPI();
     }
 
 
