@@ -33,16 +33,13 @@ public class PetServiceHelper {
         RequestSpecification request = RestAssured.given();
         request.contentType(ContentType.JSON);
         request.spec(requestSpecification);
-
-        if (this.method.equalsIgnoreCase(ApiMethods.POST))
-            return request.post(this.fullURL);
-        else if(this.method.equalsIgnoreCase(ApiMethods.GET))
-            return request.get(this.fullURL);
-        else if(this.method.equalsIgnoreCase(ApiMethods.PUT))
-            return request.put(this.fullURL);
-        else if(this.method.equalsIgnoreCase(ApiMethods.DELETE))
-            return request.delete(this.fullURL);
-        return null;
+        
+        return switch (this.method) {
+            case ApiMethods.POST -> request.post(this.fullURL);
+            case ApiMethods.GET -> request.get(this.fullURL);
+            case ApiMethods.PUT -> request.put(this.fullURL);
+            default -> null;
+        };
 
     }
 
