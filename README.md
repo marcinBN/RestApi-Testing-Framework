@@ -39,7 +39,7 @@ To do:
 
 + Defining different environments
 ```java
-public static final String STAGING = "https://swaggerpetstore.przyklady.javastart.pl/v2";
+STAGING=https://swaggerpetstore.przyklady.javastart.pl/v2
 ```
 
 + Simple reporting
